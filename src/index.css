@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  /* ═══ LIGHT MODE (default) ═══ */
+  :root {
+    --background: 195 100% 87%;
+    --foreground: 200 60% 14%;
+
+    --card: 195 80% 92%;
+    --card-foreground: 200 60% 14%;
+
+    --popover: 195 80% 92%;
+    --popover-foreground: 200 60% 14%;
+
+    --primary: 142 64% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 90% 60%;
+    --secondary-foreground: 200 60% 14%;
+
+    --muted: 195 40% 80%;
+    --muted-foreground: 200 30% 35%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 195 50% 75%;
+    --input: 195 40% 85%;
+    --ring: 199 89% 48%;
+
+    --radius: 1.5rem;
+
+    /* Custom tokens — light */
+    --ocean-deep: 195 100% 87%;
+    --ocean-mid: 195 80% 82%;
+    --ocean-light: 195 70% 78%;
+    --glass-tint: 195 100% 50%;
+    --glow-cyan: 199 89% 48%;
+    --glow-green: 142 64% 36%;
+    --text-secondary: 200 30% 35%;
+  }
+
+  /* ═══ DARK MODE ═══ */
+  .dark {
+    --background: 210 100% 9%;
+    --foreground: 0 0% 100%;
+
+    --card: 207 100% 14%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 207 100% 14%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 142 69% 58%;
+    --primary-foreground: 210 100% 9%;
+
+    --secondary: 200 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 30% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 187 100% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 60% 30%;
+    --input: 200 40% 20%;
+    --ring: 187 100% 42%;
+
+    /* Custom tokens — dark */
+    --ocean-deep: 210 100% 9%;
+    --ocean-mid: 203 100% 15%;
+    --ocean-light: 200 100% 18%;
+    --glass-tint: 210 100% 50%;
+    --glow-cyan: 187 100% 42%;
+    --glow-green: 142 69% 58%;
+    --text-secondary: 215 20% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  code, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* ═══ GLASS CARD SYSTEM — LIGHT ═══ */
+@layer components {
+  .glass-card {
+    backdrop-filter: blur(20px) saturate(150%) brightness(1.2);
+    background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(200,240,255,0.25));
+    border-top: 1px solid rgba(255,255,255,0.9);
+    border-left: 1px solid rgba(255,255,255,0.9);
+    border-bottom: 1px solid rgba(150,220,255,0.3);
+    border-right: 1px solid rgba(150,220,255,0.3);
+    box-shadow:
+      0 8px 32px rgba(100,180,255,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.8),
+      0 0 0 1px rgba(100,220,255,0.15);
+    border-radius: 24px;
+  }
+
+  .dark .glass-card {
+    backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+    background: linear-gradient(135deg, rgba(0,150,255,0.08), rgba(255,255,255,0.03));
+    border-top: 1px solid rgba(100,200,255,0.25);
+    border-left: 1px solid rgba(100,200,255,0.25);
+    border-bottom: 1px solid rgba(0,100,200,0.1);
+    border-right: 1px solid rgba(0,100,200,0.1);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(150,220,255,0.2),
+      0 0 0 1px rgba(0,200,150,0.1);
+  }
+
+  .glass-card-hover:hover {
+    box-shadow:
+      0 8px 32px rgba(100,180,255,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.8),
+      0 0 30px rgba(56,189,248,0.3),
+      0 0 0 1px rgba(100,220,255,0.2);
+  }
+
+  .dark .glass-card-hover:hover {
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(150,220,255,0.2),
+      0 0 30px rgba(0,150,255,0.3),
+      0 0 0 1px rgba(0,200,150,0.15);
+  }
+
+  .glass-pill {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(200,240,255,0.2));
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 9999px;
+  }
+
+  .dark .glass-pill {
+    background: linear-gradient(135deg, rgba(0,150,255,0.1), rgba(255,255,255,0.05));
+    border: 1px solid rgba(100,200,255,0.2);
+  }
+
+  .glass-input {
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(150,220,255,0.3);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .dark .glass-input {
+    background: rgba(0,30,60,0.5);
+    border: 1px solid rgba(100,200,255,0.15);
+  }
+  .glass-input:focus {
+    border-color: hsl(var(--glow-cyan));
+    box-shadow: 0 0 20px rgba(56,189,248,0.2);
+    outline: none;
+  }
+  .dark .glass-input:focus {
+    box-shadow: 0 0 20px rgba(0,212,255,0.2);
+  }
+
+  .btn-primary-glow {
+    background: linear-gradient(135deg, hsl(var(--glow-green)), hsl(142 64% 30%));
+    color: hsl(0 0% 100%);
+    border-radius: 9999px;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(22,163,74,0.3), 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+  }
+  .dark .btn-primary-glow {
+    background: linear-gradient(135deg, hsl(var(--glow-green)), hsl(142 69% 48%));
+    color: hsl(var(--ocean-deep));
+    box-shadow: 0 0 20px rgba(74,222,128,0.3), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .btn-primary-glow:hover {
+    box-shadow: 0 0 30px rgba(22,163,74,0.5), 0 4px 16px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+  .dark .btn-primary-glow:hover {
+    box-shadow: 0 0 30px rgba(74,222,128,0.5), 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  .btn-glass {
+    backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(200,240,255,0.2));
+    border: 1px solid rgba(56,189,248,0.3);
+    border-radius: 9999px;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    box-shadow: 0 4px 16px rgba(100,180,255,0.15);
+    transition: all 0.3s ease;
+  }
+  .dark .btn-glass {
+    background: linear-gradient(135deg, rgba(0,150,255,0.12), rgba(255,255,255,0.06));
+    border: 1px solid rgba(0,212,255,0.3);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .btn-glass:hover {
+    border-color: rgba(56,189,248,0.5);
+    box-shadow: 0 0 20px rgba(56,189,248,0.2), 0 4px 16px rgba(100,180,255,0.2);
+    transform: translateY(-2px);
+  }
+  .dark .btn-glass:hover {
+    border-color: rgba(0,212,255,0.5);
+    box-shadow: 0 0 20px rgba(0,212,255,0.2), 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    color: hsl(var(--glow-green));
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  .glass-chip {
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(150,220,255,0.3);
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    color: hsl(var(--accent));
+  }
+  .dark .glass-chip {
+    background: rgba(0,150,255,0.1);
+    border: 1px solid rgba(100,200,255,0.2);
+  }
+}
+
+/* Water caustic background animations */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30%, 20%) scale(1.1); }
+  50% { transform: translate(10%, 40%) scale(0.95); }
+  75% { transform: translate(-10%, 20%) scale(1.05); }
+}
+@keyframes blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-30%, 30%) scale(1.15); }
+  66% { transform: translate(-20%, -10%) scale(0.9); }
+}
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20%, -20%) scale(1.1); }
+  50% { transform: translate(-15%, 15%) scale(0.95); }
+  75% { transform: translate(10%, -10%) scale(1.05); }
+}
+@keyframes blob4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25%, 25%) scale(1.1); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(-15deg); }
+  100% { transform: translateX(200%) rotate(-15deg); }
+}
+
+@keyframes float1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes float2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes float3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+@keyframes ripple-expand {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(56,189,248,0.2); }
+  50% { box-shadow: 0 0 40px rgba(56,189,248,0.4); }
+}
+
+.dark .animate-glow-pulse {
+  animation: glow-pulse-dark 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-dark {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+  50% { box-shadow: 0 0 40px rgba(0,212,255,0.4); }
+}
+
+.animate-float1 { animation: float1 4s ease-in-out infinite; }
+.animate-float2 { animation: float2 5s ease-in-out infinite; }
+.animate-float3 { animation: float3 6s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--ocean-deep)); }
+::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(56,189,248,0.5); }
+.dark ::-webkit-scrollbar-thumb { background: rgba(0,150,255,0.3); }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgba(0,150,255,0.5); }
